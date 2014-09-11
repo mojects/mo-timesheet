@@ -1,0 +1,21 @@
+.row
+  .large-2.columns
+    = render 'users/sidebar'
+  .large-10.columns
+    - @payrolls_info.each do |(payroll_info, payroll)|
+      %table.expand
+        %tbody
+          - payroll_info.each do |k, v|
+            %tr
+              %td
+                %strong= k
+              %td= v
+      .row
+        .large-12.columns
+          .right
+            %dl.sub-nav
+              %dt
+                %strong Actions:
+              %dt= link_to 'Edit', edit_user_payroll_path(params[:user_id], payroll.id)
+              %dt= link_to 'Delete', {controller: 'payrolls', action: 'destroy', id: payroll.id }, method: 'delete'
+    = link_to 'New payroll', new_user_payroll_path(params[:user_id])

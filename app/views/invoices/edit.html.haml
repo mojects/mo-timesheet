@@ -1,0 +1,12 @@
+.row
+  .large-12.columns
+    .row
+      .large-6.columns
+        %h3
+        = form_for @invoice, url: invoice_path(@invoice), method: :patch do |f|
+          %fieldset
+            - @info.each do |lbl, (value, attribute)|
+              %label{for: attribute}
+                = lbl
+              %input{type: 'text', value: value, title: lbl, name: attribute}
+            %input.button.expand{type: 'submit', value: 'Update'}

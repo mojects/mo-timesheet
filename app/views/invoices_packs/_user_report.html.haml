@@ -1,0 +1,6 @@
+%tr
+  %td= check_box UserReport, 'status', {multiple: true, checked: true}, user_report.id, nil
+  %td= user_report.name
+  %td= user_report.user.name
+  %td= amount(user_report)
+  %td= user_report.summary

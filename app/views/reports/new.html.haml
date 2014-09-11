@@ -1,0 +1,12 @@
+.row
+  .large-12.columns
+    %h3
+    = form_for :report, url: reports_path do |f|
+      %fieldset
+        %label{for: 'name'} Report name
+        = f.text_field :name
+        %label{for: 'start_time'} First date
+        = f.date_field :start_time, value: (Date.today - 1.month).beginning_of_month
+        %label{for: 'finish_time'} Last date
+        = f.date_field :finish_time, value: (Date.today - 1.month).end_of_month
+        %input.button.expand{type: 'submit', value: 'Create'}

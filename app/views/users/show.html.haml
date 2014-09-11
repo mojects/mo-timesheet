@@ -1,0 +1,62 @@
+.row
+  .large-2.columns
+    = render 'sidebar'
+  .large-10.columns
+    .row
+      .large-6.columns
+        %h3 Main Information
+        %table.expand
+          %tbody
+            - @main_info.each do |k, (v, _)|
+              %tr
+                %td
+                  %strong= k
+                %td= v
+        .right
+          = link_to 'Edit', edit_user_path
+      .large-6.columns
+        %h3 Contacts
+        %table.expand
+          %tbody
+            - @contacts_info.each do |k, (v, _)|
+              %tr
+                %td
+                  %strong= k
+                %td= v
+        .right
+          = link_to 'Edit', edit_user_path
+    .row
+      .large-6.columns
+        %h3 Contract Information
+        %table.expand
+          %tbody
+            - @contract_info.each do |k, (v, _)|
+              %tr
+                %td
+                  %strong= k
+                %td= v
+        .right
+          = link_to 'Edit', edit_user_path
+      .large-6.columns
+        %h3 Address
+        %table.expand
+          %tbody
+            - @address_info.each do |k, (v, _)|
+              %tr
+                %td
+                  %strong= k
+                %td= v
+        .right
+          = link_to 'Edit', edit_user_path
+    .row
+      .large-6.columns
+        %h3 Bank Account Information
+        %table.expand
+          %tbody
+            - @bank_account_info.each do |k, (v, _)|
+              %tr
+                %td
+                  %strong= k
+                %td= v
+        .right
+          = link_to 'Edit', edit_user_path

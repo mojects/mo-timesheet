@@ -1,0 +1,27 @@
+.row
+  .large-2.columns
+    = render 'users/sidebar'
+  .large-10.columns
+    %table.expand
+      %thead
+        %tr
+          %th type
+          %th comment
+          %th hours
+          %th rate
+          %th sum
+          %th currency
+      %tbody
+        - @reports_history.each do |hist_report|
+          %tr
+            %td
+              %strong= hist_report.report.name
+          - hist_report.fees.each do |fee|
+            %tr
+              %td= fee.work_type
+              %td= fee.comment
+              %td= fee.hours
+              %td= fee.amount
+              %td= fee.sum
+              %td= fee.currency
+    = paginate @reports_history

@@ -1,0 +1,11 @@
+---
+development: &default
+  :redmine_1:
+    adapter: postgresql
+    database: dfh4to79k0taje
+    user: klffytbklkikmj
+    password: yiVdhkxk--XLcM7GA_Q3TmotjD
+    host: ec2-50-19-219-235.compute-1.amazonaws.com
+    port: 5432
+test: *default
+prod: *default

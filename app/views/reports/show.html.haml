@@ -1,0 +1,13 @@
+.row
+  .large-12.columns
+    %table.expand
+      %thead
+        %td employee name
+        %td total hours
+        %td summary
+      %tbody
+        - @report.user_reports.each do |user_report|
+          %tr
+            %td= link_to user_report.user.name, user_report_path(user_report)
+            %td= user_report.total_hours
+            %td= user_report.summary

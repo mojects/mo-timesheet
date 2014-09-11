@@ -1,0 +1,14 @@
+.row
+  .large-12.columns
+    %h3
+    %table.expand
+      %thead
+        %tr
+          %th name
+          %th description
+          %th total amount
+          %th download
+          %th edit
+      %tbody
+        - invoices.each do |invoice|
+          = render 'invoices/invoice_in_table', invoice: invoice

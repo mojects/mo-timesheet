@@ -1,0 +1,10 @@
+.row
+  .large-12.columns
+    %h3
+      = form_for :user_report, url: user_report_path(@user_report.id), method: :patch do |f|
+        %fieldset
+          - @info.each do |lbl, (value, attribute)|
+            %label{for: attribute}
+              = lbl
+            = f.text_field attribute, value: value, title: lbl
+          %input.button.expand{type: 'submit', value: 'Update'}

@@ -1,0 +1,46 @@
+!!!
+%head
+  %meta{'http-equiv' => 'content-type', content: 'text/html; charset=utf-8'}
+  %meta{'name' => 'viewport', content: 'width=device-width, initial-scale=1.0'}
+  %meta{charset: 'utf-8'}
+  = stylesheet_link_tag 'application'
+  = favicon_link_tag 'favicon.ico'
+  = javascript_include_tag 'vendor/modernizr'
+  = csrf_meta_tags
+
+  %title= 'Mo Timesheet'
+%body
+  %nav{:class => "top-bar", :"data-topbar" => ""}
+    %ul.title-area
+      %li.name{ style: 'padding:10px 5px 0 5px' }
+        %img{ src: '/logo.png' } 
+        %a{ href: '/', style: 'font-size:25;color:#ffffff;' } Mo Timesheet
+      %li.toggle-topbar
+        %span
+          %a{ href: '' } Menu
+    %section.top-bar-section
+      %ul.left
+        %li.divider
+        %li
+          %a{ href: '/users' } Employees
+        %li.divider
+        %li
+          %a{ href: '/time_entries' } Time Entries
+        %li.divider
+        %li
+          %a{ href: '/reports' } Reports
+        %li.divider
+        %li
+          %a{ href: '/invoices_packs' } Invoices
+      %ul.right
+        %li.has-form
+          %form{ action: sync_last_month_path, method: :post}
+            %input.button{type: 'submit', value: 'Synchronize last month'}
+        %li
+          %a{ href: '/connectors' } Import
+  = yield
+  %footer.row
+    .large-12.columns
+      %p.right
+        Mojects.
+  = javascript_include_tag 'application'

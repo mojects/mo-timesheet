@@ -1,0 +1,14 @@
+.row
+  .large-12.columns
+    - @connectors.each do |x|
+      = link_to x.gsub('_', ' '), "connectors/#{x}"
+.row
+  .large-4.columns
+    %form{action: 'connectors/synchronize', method: 'post'}
+      %fieldset
+        %p Synchronize  users and time entries with redmine
+        %label{for: 'from'} First Date:
+        %input{type: 'date', name: 'from', title: 'first date', value: (Date.today - 60.days)}
+        %label{for: 'to'} Last Date:
+        %input{type: 'date', name: 'to', title: 'last date', value: (Date.today + 1.month)}
+        %input.button.expand{type: 'submit', value: 'Synchronize'}

@@ -1,0 +1,17 @@
+.row
+  .large-12.columns
+    %table.expand
+      %thead
+        %th summary
+        %th timeframe
+        %th
+        %th
+      %tbody
+        - @reports.each do |(report, timeframe)|
+          %tr
+            %td= link_to report.name, report
+            %td= timeframe
+            %td= link_to 'generage xml', report_xml_path(report), target: '_blank'
+            %td= link_to 'generate invoices', new_report_invoices_pack_path(report.id)
+            %td= link_to 'delete', { controller: 'reports', action: 'destroy', id: report.id }, method: 'delete'
+    = link_to 'Create new report', new_report_path

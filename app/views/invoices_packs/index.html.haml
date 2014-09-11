@@ -1,0 +1,12 @@
+.row
+  .large-12.columns
+    %table.expand
+      %tbody
+        - @packs.reverse_each do |pack|
+          %tr
+            %td
+              = link_to "Invoices pack # #{pack.id}", invoices_pack_path(pack)
+            %td
+              = link_to "Post to elasticsearch", to_elastic_invoices_pack_path(pack), method: :post
+            %td
+              = link_to "Download invoices", download_invoices_pack_path(pack)

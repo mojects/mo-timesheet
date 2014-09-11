@@ -1,0 +1,27 @@
+.row
+  .large-12.columns
+    %h2
+    .right
+      - if params[:show_hidden]
+        = link_to 'Hide non-active users', users_path
+      - else
+        = link_to 'Show hidden users', users_path(show_hidden: true)
+    %h2
+    %table.expand
+      %thead
+        %tr
+          %th Name
+          %th Time Entries
+          %th Report
+          %th Payrolls
+          %th Invoices
+          %th Hide / unhide
+      %tbody
+        - @users.each do |user|
+          %tr{highlight_hidden(user)}
+            %td= link_to user.name, user_path(user)
+            %td= link_to 'Time Entries', user_time_entries_path(user)
+            %td= link_to 'Reports', user_user_reports_path(user)
+            %td= link_to 'Payrolls', user_payrolls_path(user)
+            %td= link_to 'Invoices', user_invoices_path(user)
+            %td= hide_unhide user

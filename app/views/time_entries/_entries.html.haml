@@ -1,0 +1,22 @@
+.row
+  .large-12.columns
+    %h3
+    %table.expand
+      %thead
+        %tr
+          %th User
+          %th Task
+          %th Description
+          %th Date
+          %th Spent hours
+        %tbody
+          - @entries.each do |entry|
+            %tr
+              %td= entry.user.name
+              %td= entry.task
+              %td= entry.comment
+              %td= entry.spent
+              %td= entry.hours
+.row
+  .large-12.columns
+    = paginate @entries

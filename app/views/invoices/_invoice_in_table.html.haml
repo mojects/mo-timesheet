@@ -1,0 +1,6 @@
+%tr
+  %td= link_to invoice.user.name, invoice_path(invoice)
+  %td= invoice.description
+  %td= invoice.total_amount
+  %td= link_to 'pdf', download_invoice_path(invoice)
+  %td= link_to 'edit', edit_invoice_path(invoice)

@@ -1,0 +1,107 @@
+.row
+  .right.large-4.columns
+    .right
+      %dl.sub-nav
+        %dt
+          %strong Actions:
+        %dd= link_to_update_user(report, user_report)
+        %dd= link_to_invoices_user(report, user_report)
+.row
+  .large-12.columns
+    %h3
+    .sticky
+      %nav{:class => "top-bar", :"data-topbar" => ""}
+        %section.top-bar-section
+          %ul.left{style: 'width: 100%'}
+            %li.divider
+            %li= link_to 'To reports pack', report_path(report)
+            %li.divider
+            %li.hide-for-small{style: 'width:90%', class: 'has-form'}
+              %input{type: 'text', id: 'summary', placeholder: 'Summary of work', value: user_report.summary}
+.row
+  .large-12.columns
+    %h4
+      %strong= user_report.user.name
+    %table.expand
+      %thead
+        %tr 
+          %th project
+          %th spent on
+          %th task
+          %th hours
+          %th comment
+      %tbody
+        - user_report.user_details.order(:spent_on => :asc).each do |report_user_detail|
+          %tr
+            %td= report_user_detail.project
+            %td= report_user_detail.spent_on
+            %td= report_user_detail.task
+            %td= report_user_detail.hours
+            %td= report_user_detail.comment
+.row
+  .large-6.columns
+    %a{href: '#fees', id: 'fees'}
+      %h4 Fees:
+    %table.expand
+      %thead
+        %tr
+          %th type
+          %th comment
+          %th hours
+          %th rate
+          %th sum
+          %th currency
+          %th
+      %tbody
+        - user_report.fees.each do |fee|
+          %tr
+            %td= fee.work_type
+            %td
+              .comment{id: "comment_fee_#{fee.id}", contenteditable: true, :'data-fee-id' => fee.id}
+                = fee.comment
+            %td= fee.hours
+            %td= fee.amount
+            %td
+              .sum{id: "sum_fee_#{fee.id}", contenteditable: true, :'data-fee-id' => fee.id}
+                = fee.sum
+            %td
+              .currency{id: "currency_fee_#{fee.id}", contenteditable: true, :'data-fee-id' => fee.id}
+                = fee.currency
+            %td= link_to_destroy_fee(report, user_report, fee)
+    = form_for @new_fee, url: @add_fee_path do |f|
+      %table
+        %td= f.select :work_type, options_for_select(['bonus', 'compensation', 'other'], 'bonus')
+        %td= f.text_field :comment, value: 'Good work'
+        %td= f.text_field :sum, value: 0
+        %td= f.text_field :currency, value: 'RUB'
+        %td
+          %input.small.button{type: 'submit', value: 'Add'}
+  .large-6.columns
+    %h4 Fees history:
+    %table.expand
+      %thead
+        %tr
+          %th type
+          %th comment
+          %th hours
+          %th rate
+          %th sum
+          %th currency
+      %tbody
+        - @reports_history.each do |hist_report|
+          %tr
+            %td
+              %strong= hist_report.report.name
+          - hist_report.fees.each do |fee|
+            %tr
+              %td= fee.work_type
+              %td= fee.comment
+              %td= fee.hours
+              %td= fee.amount
+              %td= fee.sum
+              %td= fee.currency
+    = paginate @reports_history
+.row
+  .right
+    .large-12.columns
+      %p= link_to_next_report(user_report)

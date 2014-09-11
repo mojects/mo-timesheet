@@ -1,0 +1,26 @@
+.row
+  .large-12.columns
+    = form_for :invoices_pack, url: report_invoices_packs_path(@report.id) do |f|
+      %fieldset
+        %table.expand
+          %thead
+            %tr
+              %th create invoice?
+              %th report name
+              %th user name
+              %th amount
+              %th report description
+          %tbody
+            - @user_reports.each do |user_report|
+              = render 'user_report', user_report: user_report
+        %label{for: 'base_currency'} Base currency
+        = f.text_field :base_currency, value: 'USD'
+        %p
+          Verify currency conversion rates:
+        = form_for :conversion_rates do |rates|
+          - @conversion_rates.each do |(name, rate)|
+            .row
+              .large-3.columns
+                %label{for: 'name'}= "USD-#{name}"
+                =rates.text_field name, value: rate
+        %input.button{type: 'submit', value: 'Generate invoices pack'}

@@ -1,0 +1,20 @@
+.row
+  .large-2.columns
+    = render 'users/sidebar'
+  .large-10.columns
+    %h3
+    %table.expand
+      %thead
+        %tr
+          %th Task
+          %th Description
+          %th Date
+          %th Spent hours
+        %tbody
+          - @entries.each do |entry|
+            %tr
+              %td= entry.task
+              %td= entry.comment
+              %td= entry.spent_on
+              %td= entry.hours
+    = paginate @entries

@@ -1,0 +1,13 @@
+development:
+  :elastic:
+    :address: http://your.elastic.com:9200
+    :index: timesheet1
+    :type: timesheet1
+  :invoice:
+    :customer_id: DEV
+    :bill_to:
+      :company: COMPANY NAME
+      :street_building: 37 Jackson st.
+      :city_index: Paris, France, 1243 32
+      :id: ID#24211176
+    :contacts: "John Doe, +1 234 567 32 98"

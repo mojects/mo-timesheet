@@ -1,0 +1,8 @@
+.row
+  .large-12.columns
+    %h3 Create new invoice
+    = form_for @invoice, url: report_user_report_invoices_path do |f|
+      %fieldset
+        %label{for: 'description'} Description of invoice:
+        = f.text_field :description
+        %input.button{type: 'submit', value: 'Create'}

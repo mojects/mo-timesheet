@@ -1,0 +1,10 @@
+---
+development:
+  :redmine_1: &1
+    adapter: mysql2
+    database: redmine
+    username: redmine
+    password: bvYM3bH5b
+    host: redminetest1.prg-dev.veribox.com
+    port: 3306
+  :redmine_2: *1

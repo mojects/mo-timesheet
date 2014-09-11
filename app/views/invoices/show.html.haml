@@ -1,0 +1,117 @@
+.row
+  .large-8.columns
+    %h3= @user.name
+    %p= @user.duty
+    %br
+    %br
+    %p
+      = @user.address
+      %br
+      = @user.city
+      , 
+      = @user.country
+      , 
+      = @user.zip
+      %br
+      = @user.phone
+  .large-4.columns.right
+    %h3 Invoice
+    %table
+      %tbody
+        %tr
+          %td Date
+          %td= @invoice.created_at.to_date.to_s
+        %tr
+          %td INVOICE #
+          %td= @invoice.invoice_number
+        %tr
+          %td CUSTOMER ID
+          %td= c[:customer_id]
+        %tr
+        %tr
+          %td Due Date
+          %td= @invoice.created_at.to_date + 20.days
+.row
+  .large-12.columns
+    %p
+      NAME:
+      = @user.name_for_bank_account
+      %br
+      ACCOUNT#:
+      = @user.bank_account_number
+      %br
+      SWIFT:
+      = @user.bank_swift
+      %br
+      BANK NAME:
+      = @user.bank_name
+.row
+  .large-12.columns
+    %p
+      %strong BILL TO
+    %p
+      = c[:bill_to][:company]
+      %br
+      = c[:bill_to][:street_building]
+      %br
+      = c[:bill_to][:city_index]
+    %p= c[:bill_to][:id]
+  .large-12.columns
+    %table.expand
+      %thead
+        %td DESCRIPTION
+        %td TAXED
+        %td AMOUNT
+      %tbody
+        %tr
+          %td= @invoice.invoice_description
+          %td
+          %td= @invoice.total_amount
+.row
+  .large-8.columns
+    %table.expand
+      %thead
+        %td OTHER COMMENTS
+      %tbody
+        %tr
+          %td 1. Total payment due in 20 days
+        %tr
+          %td
+        %tr
+          %td
+        %tr
+          %td
+  .large-4.columns.right
+    %table.expand
+      %tbody
+        %tr
+          %td Subtotal
+          %td $
+          %td= @invoice.total_amount
+        %tr
+          %td Taxable
+          %td $
+          %td -
+        %tr
+          %td Tax rate
+          %td $
+          %td 0.000%
+        %tr
+          %td Tax due
+          %td $
+          %td -
+        %tr
+          %td
+            %strong TOTAL Due
+          %td
+            %strong $
+          %td
+            %strong= @invoice.total_amount
+.row
+  .large-12.columnt.text-center
+    %p
+      If you have any questions about this invoice, please contact
+      %br
+      = c[:contacts]
+    %p
+      %strong Thank You For Your Business!

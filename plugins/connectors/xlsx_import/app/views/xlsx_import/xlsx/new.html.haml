@@ -1,0 +1,9 @@
+.row
+  .large-12.columns
+    %form{action: 'xlsx_import/xlsx', method: 'post', enctype: 'multipart/form-data'}
+      %fieldset
+        %laber{for: 'employee'} Employee name:
+        = select_tag 'employee', options_from_collection_for_select(@users, :id, :name)
+        %label{for: 'time_entries'} File with time entries:
+        %input{type: 'file', name: 'time_entries'}
+        %input.button.expand{type: 'submit', value: 'Import'}

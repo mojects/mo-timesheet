@@ -1,0 +1,15 @@
+.row
+  .large-12.columns
+    %h3
+      = form_for @payroll, url: @route do |f|
+        %label{for: 'amount'} Amount
+        = f.text_field :amount
+        %label{for: 'currency'} Currency
+        = f.text_field :currency
+        %label{for: 'name'} Name
+        = f.text_field :name
+        %label{for: 'effective_since'} Effective_since
+        = f.date_field :effective_since
+        %label{for: 'work_type'} Type
+        = f.select :work_type, options_for_select(['hourly', 'monthly', 'one-time'], 'hourly')
+        %input.button{submit_payroll}

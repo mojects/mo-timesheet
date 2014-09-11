@@ -1,0 +1,6 @@
+%ul.side-nav
+  %li= link_to 'Information', user_path(@user.id)
+  %li= link_to 'Time Entries', user_time_entries_path(@user.id)
+  %li= link_to 'Reports', user_user_reports_path(@user.id)
+  %li= link_to 'Salary', user_payrolls_path(@user.id)
+  %li= link_to 'Invoices', user_invoices_path(@user.id)

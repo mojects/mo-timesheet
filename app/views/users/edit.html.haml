@@ -1,0 +1,19 @@
+.row
+  .large-2.columns
+    = render 'sidebar'
+  .large-10.columns
+    .row
+      .large-6.columns
+        %h3
+        = form_for :user, url: user_path(@user), method: :patch do |f|
+          - @info.each do |lbl, (value, attribute, type)|
+            - type ||= 'text'
+            - if type == 'checkbox'
+              %input{type: type, value: 1, title: lbl, name: attribute}
+                = lbl
+              %br
+            -else
+              %label{for: attribute}
+                = lbl
+              %input{type: type, value: value, title: lbl, name: attribute}
+          %input.button.expand{type: 'submit', value: 'Update'}
